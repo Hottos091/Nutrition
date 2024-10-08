@@ -1,5 +1,4 @@
-﻿
-namespace Nutrition.Infrastructure.Seeders;
+﻿namespace Nutrition.Infrastructure.Seeders;
 
 public interface INutritionSeeder
 {

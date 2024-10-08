@@ -1,4 +1,5 @@
 using Nutrition.Infrastructure.Extensions;
+using Nutrition.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
+var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetRequiredService<INutritionSeeder>();
+
+await seeder.Seed();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

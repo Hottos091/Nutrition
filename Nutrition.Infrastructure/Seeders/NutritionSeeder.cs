@@ -1,93 +1,86 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Nutrition.Domain.Entities;
+﻿using Nutrition.Domain.Entities;
 using Nutrition.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Nutrition.Infrastructure.Seeders
+namespace Nutrition.Infrastructure.Seeders;
+
+internal class NutritionSeeder(NutritionDBContext dbContext) : INutritionSeeder
 {
-    internal class NutritionSeeder(NutritionDBContext dbContext) : INutritionSeeder
+    public async Task Seed()
     {
-        public async Task Seed()
+        if (await dbContext.Database.CanConnectAsync())
         {
-            if (await dbContext.Database.CanConnectAsync())
+            if (!dbContext.Dishes.Any())
             {
-                if (!dbContext.Dishes.Any())
-                {
-                    var restaurants = GetDishes();
-                    dbContext.Dishes.AddRange(restaurants);
-                    await dbContext.SaveChangesAsync();
-                }
+                var restaurants = GetDishes();
+                dbContext.Dishes.AddRange(restaurants);
+                await dbContext.SaveChangesAsync();
             }
         }
+    }
 
 
-        private IEnumerable<Dish> GetDishes()
+    private IEnumerable<Dish> GetDishes()
+    {
+        Ingredient chicken = new()
         {
-            Ingredient chicken = new()
+            Name = "Chicken Breast",
+            NutritionalInformation = new NutritionalInformation()
             {
-                Name = "Chicken Breast",
-                NutritionalInformation = new NutritionalInformation()
-                {
-                    GramOfCarbohydrates = 0,
-                    GramOfLipids = 4, // Valeurs arrondies
-                    GramOfProteins = 31,
-                    Kalories = 165
-                }
-            };
+                GramOfCarbohydrates = 0,
+                GramOfLipids = 4, // Valeurs arrondies
+                GramOfProteins = 31,
+                Kalories = 165
+            }
+        };
 
-            Ingredient lettuce = new()
+        Ingredient lettuce = new()
+        {
+            Name = "Lettuce",
+            NutritionalInformation = new NutritionalInformation()
             {
-                Name = "Lettuce",
-                NutritionalInformation = new NutritionalInformation()
-                {
-                    GramOfCarbohydrates = 3,
-                    GramOfLipids = 0,
-                    GramOfProteins = 1,
-                    Kalories = 15
-                }
-            };
+                GramOfCarbohydrates = 3,
+                GramOfLipids = 0,
+                GramOfProteins = 1,
+                Kalories = 15
+            }
+        };
 
-            Ingredient tomato = new()
+        Ingredient tomato = new()
+        {
+            Name = "Tomato",
+            NutritionalInformation = new NutritionalInformation()
             {
-                Name = "Tomato",
-                NutritionalInformation = new NutritionalInformation()
-                {
-                    GramOfCarbohydrates = 4,
-                    GramOfLipids = 0,
-                    GramOfProteins = 1,
-                    Kalories = 18
-                }
-            };
+                GramOfCarbohydrates = 4,
+                GramOfLipids = 0,
+                GramOfProteins = 1,
+                Kalories = 18
+            }
+        };
 
-            List<Dish> dishes = new()
+        List<Dish> dishes = new()
+        {
+            new Dish()
             {
-                new Dish()
+                Name = "Chicken Salad",
+                Description = "A healthy chicken salad.",
+                Ingredients = new List<DishIngredient>()
                 {
-                    Name = "Chicken Salad",
-                    Description = "A healthy chicken salad.",
-                    Ingredients = new List<DishIngredient>()
-                    {
-                        new DishIngredient { Ingredient = chicken, QuantityIngredient = 200, TypeOfIngredient = "Grams" }, // Quantité en grammes
-                        new DishIngredient { Ingredient = lettuce, QuantityIngredient = 1, TypeOfIngredient = "Pièces"  },
-                        new DishIngredient { Ingredient = tomato, QuantityIngredient = 2, TypeOfIngredient = "Pièces"  }
-                    }
-                },
-                new Dish()
-                {
-                    Name = "Grilled Chicken",
-                    Description = "Grilled chicken with spices.",
-                    Ingredients = new List<DishIngredient>()
-                    {
-                        new DishIngredient { Ingredient = chicken, QuantityIngredient = 250, TypeOfIngredient = "Grams"  }
-                    }
+                    new DishIngredient { Ingredient = chicken, QuantityIngredient = 200, TypeOfIngredient = "Grams" }, // Quantité en grammes
+                    new DishIngredient { Ingredient = lettuce, QuantityIngredient = 1, TypeOfIngredient = "Pièces"  },
+                    new DishIngredient { Ingredient = tomato, QuantityIngredient = 2, TypeOfIngredient = "Pièces"  }
                 }
-            };
+            },
+            new Dish()
+            {
+                Name = "Grilled Chicken",
+                Description = "Grilled chicken with spices.",
+                Ingredients = new List<DishIngredient>()
+                {
+                    new DishIngredient { Ingredient = chicken, QuantityIngredient = 250, TypeOfIngredient = "Grams"  }
+                }
+            }
+        };
 
-            return dishes;
-        }
+        return dishes;
     }
 }

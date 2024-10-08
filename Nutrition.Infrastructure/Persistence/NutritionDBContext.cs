@@ -18,6 +18,9 @@ public class NutritionDBContext(DbContextOptions<NutritionDBContext> options) : 
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<Ingredient>()
+            .OwnsOne(i => i.NutritionalInformation);
+
         //Relation N-N entre Dish et Ingredient via DishIngredient
         modelBuilder.Entity<DishIngredient>()
             .HasKey(di => new { di.DishId, di.IngredientId }); //Composite Key
