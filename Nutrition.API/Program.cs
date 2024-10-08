@@ -1,3 +1,4 @@
+using Nutrition.Application.Extensions;
 using Nutrition.Infrastructure.Extensions;
 using Nutrition.Infrastructure.Seeders;
 
@@ -8,6 +9,7 @@ builder.Services.AddControllers();
 
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

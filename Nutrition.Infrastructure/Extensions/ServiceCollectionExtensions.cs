@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nutrition.Domain.Repositories;
 using Nutrition.Infrastructure.Persistence;
+using Nutrition.Infrastructure.Repositories;
 using Nutrition.Infrastructure.Seeders;
 
 namespace Nutrition.Infrastructure.Extensions;
@@ -15,5 +17,6 @@ public static class ServiceCollectionExtensions
         services.AddDbContext<NutritionDBContext>(options => options.UseSqlServer(connectionString));
 
         services.AddScoped<INutritionSeeder, NutritionSeeder>();
+        services.AddScoped<IIngredientsRepository, IngredientsRepository>();
     } 
 }
