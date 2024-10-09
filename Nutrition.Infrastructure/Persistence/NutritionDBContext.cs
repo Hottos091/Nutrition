@@ -27,7 +27,7 @@ public class NutritionDBContext(DbContextOptions<NutritionDBContext> options) : 
 
         modelBuilder.Entity<DishIngredient>()
             .HasOne(di => di.Dish)
-            .WithMany(d => d.Ingredients)
+            .WithMany(d => d.DishIngredients)
             .HasForeignKey(di => di.DishId);
 
         modelBuilder.Entity<DishIngredient>()

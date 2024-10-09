@@ -18,5 +18,7 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<INutritionSeeder, NutritionSeeder>();
         services.AddScoped<IIngredientsRepository, IngredientsRepository>();
+        services.AddScoped<IDishesRepository, DishesRepository>();
+        services.AddScoped<IDishIngredientsRepository, DishIngredientsRepository>();
     } 
 }

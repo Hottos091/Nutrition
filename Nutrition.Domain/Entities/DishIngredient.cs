@@ -1,4 +1,6 @@
-﻿namespace Nutrition.Domain.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace Nutrition.Domain.Entities;
 
 public class DishIngredient
 {
@@ -7,6 +9,8 @@ public class DishIngredient
     public string TypeOfIngredient { get; set; }
 
     public int DishId { get; set; }
+
+    [JsonIgnore]
     public Dish Dish { get; set; }
     
     public int IngredientId {  get; set; }

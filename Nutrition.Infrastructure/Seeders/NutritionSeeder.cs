@@ -63,7 +63,7 @@ internal class NutritionSeeder(NutritionDBContext dbContext) : INutritionSeeder
             {
                 Name = "Chicken Salad",
                 Description = "A healthy chicken salad.",
-                Ingredients = new List<DishIngredient>()
+                DishIngredients = new List<DishIngredient>()
                 {
                     new DishIngredient { Ingredient = chicken, QuantityIngredient = 200, TypeOfIngredient = "Grams" }, // Quantité en grammes
                     new DishIngredient { Ingredient = lettuce, QuantityIngredient = 1, TypeOfIngredient = "Pièces"  },
@@ -74,7 +74,7 @@ internal class NutritionSeeder(NutritionDBContext dbContext) : INutritionSeeder
             {
                 Name = "Grilled Chicken",
                 Description = "Grilled chicken with spices.",
-                Ingredients = new List<DishIngredient>()
+                DishIngredients = new List<DishIngredient>()
                 {
                     new DishIngredient { Ingredient = chicken, QuantityIngredient = 250, TypeOfIngredient = "Grams"  }
                 }
