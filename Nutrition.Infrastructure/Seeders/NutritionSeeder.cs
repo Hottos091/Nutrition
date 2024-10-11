@@ -11,8 +11,8 @@ internal class NutritionSeeder(NutritionDBContext dbContext) : INutritionSeeder
         {
             if (!dbContext.Dishes.Any())
             {
-                var restaurants = GetDishes();
-                dbContext.Dishes.AddRange(restaurants);
+                var dishes = GetDishes();
+                dbContext.Dishes.AddRange(dishes);
                 await dbContext.SaveChangesAsync();
             }
         }

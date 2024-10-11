@@ -18,4 +18,17 @@ internal class DishesRepository(NutritionDBContext dbContext)
 
         return dishes;
     }
+
+    public async Task<Dish>? GetByIdAsync(int id)
+    {
+        var dish = await dbContext.Dishes
+            .Include(dish => dish.DishIngredients)
+            .ThenInclude(di => di.Ingredient)
+            .FirstOrDefaultAsync(dish => dish.Id == id);
+        
+        return dish;
+    }
+
+    public Task SaveChanges()
+     => dbContext.SaveChangesAsync();
 }
