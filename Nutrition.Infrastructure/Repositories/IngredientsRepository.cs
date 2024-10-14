@@ -14,4 +14,15 @@ internal class IngredientsRepository(NutritionDBContext dbContext)
         var ingredients = await dbContext.Ingredients.ToListAsync();
         return ingredients;
     }
+
+    public async Task<Ingredient> GetByIdAsync(int id)
+    {
+        var ingredient = await dbContext.Ingredients
+            .FirstOrDefaultAsync(i => i.Id == id);
+
+        return ingredient;
+    }
+
+    public Task SaveChanges()
+    => dbContext.SaveChangesAsync();
 }

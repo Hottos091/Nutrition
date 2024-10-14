@@ -22,9 +22,9 @@ internal class DishesRepository(NutritionDBContext dbContext)
     public async Task<Dish>? GetByIdAsync(int id)
     {
         var dish = await dbContext.Dishes
-            .Include(dish => dish.DishIngredients)
+            .Include(d => d.DishIngredients)
             .ThenInclude(di => di.Ingredient)
-            .FirstOrDefaultAsync(dish => dish.Id == id);
+            .FirstOrDefaultAsync(d => d.Id == id);
         
         return dish;
     }

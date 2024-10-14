@@ -2,10 +2,41 @@
 @port = 7063
 
 
-GET https://localhost:7063/api/dishes
+GET {{host}}:{{port}}/api/dishes
+
+###
+
+GET {{host}}:{{port}}/api/dishes/2
 
 
-PATCH https://localhost:7063/api/dishes/3
+###
+
+GET {{host}}:{{port}}/api/dishingredients
+
+###
+
+GET {{host}}:{{port}}/api/ingredients
+
+###
+
+GET {{host}}:{{port}}/api/ingredients/2
+
+###
+
+PATCH {{host}}:{{port}}/api/ingredients/2
+Content-Type: application/json
+
+{
+  "name": "Modified Lettuce",
+  "gramOfCarbohydrates": 4,
+  "gramOfLipids": 1,
+  "gramOfProteins": 2,
+  "kalories": 16
+}
+
+###
+
+PATCH {{host}}:{{port}}/api/dishes/3
 Content-Type: application/json
 
 {
@@ -18,3 +49,9 @@ Content-Type: application/json
     }
   ]
 }
+
+
+###
+
+
+
