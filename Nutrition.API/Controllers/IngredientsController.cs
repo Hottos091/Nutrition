@@ -1,8 +1,10 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nutrition.Application.Ingredients.Commands;
 using Nutrition.Application.Ingredients.Commands.GetAllIngredients;
 using Nutrition.Application.Ingredients.Queries.GetIngredientById;
+using Nutrition.Infrastructure.Authorization;
 using System.Net.Sockets;
 
 namespace Nutrition.API.Controllers;
@@ -12,6 +14,7 @@ namespace Nutrition.API.Controllers;
 public class IngredientsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
+    [Authorize(Policy = PolicyNames.IsAtLeast18)]
     public async Task<IActionResult> GetAllAsync()
     {
         var ingredients = await mediator.Send(new GetAllIngredientsQuery());

@@ -1,5 +1,7 @@
 @host = https://localhost
 @port = 7063
+@token = CfDJ8DwfvBDc2A1Ori2WC4ud2uFXvg2p5kSBO6At6Mp4t_44FTAG9_XAoKRnDyCik920l3FsvD2ZsvMRTLMedNagzfI9Uq0KtM1bZartdjqsUkXH428akZhxxxG4HEnBHD5M5rwTJX6wp2V2fRLWck78VcnRQ_8yN4FaV8C8QE8yMI-Y0wrQ3yieRj9jgA4iJDMhpCoy0gNEj9rcvxktR75UvDGMcdGJhMSbw_BszhQyAda6oe8fufBhyZmTO4c5E4bpIqRACkvuQY7dztsw46mqiCC1sOfNa38U6AqiWI1DU-M187sHKqkYeG4UZdcTw5GbN1q7RxyQT9sd8rz9e5riXvOoYMf1TTM-4E00-mWsZ-gEtxKa4vijrWIoOXujYtA-M0qN8UGWWu7XcMOECuvu9WWyz-q5ACFwLWkGNtqWOMAXUtexMrPrZnX9mZ2-C8vW33UUz9QWwdQE-z_lHuo2HhCpzJu97Gfo__z2q1D-2Imn1hbvgcSNCk2xBOjw7GbAXQjEbWUHpqmVHZOaWTz5SEsM_L_LjS6aKVXRxZM9F8PAYH-rQh5VyyNAslab9soT-2YGN03qlnK7WSyG0giUWykJmjyvnSCqSD3pSJz9-Ap_LacuzRsiUG5Eq6GhXsdy29H5lPkEGDXqIJfasawMX2lgYkM4rYjyre4U_6jlrtmQukmC7PoRNbWiPv2xy8-8SA
+
 
 
 GET {{host}}:{{port}}/api/dishes
@@ -16,6 +18,7 @@ GET {{host}}:{{port}}/api/dishingredients
 ###
 
 GET {{host}}:{{port}}/api/ingredients
+Authorization: Bearer {{token}}
 
 ###
 

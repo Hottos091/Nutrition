@@ -37,6 +37,8 @@ public static class ServiceCollectionExtensions
             .AddPolicy(PolicyNames.IsAtLeast18,
                 builder => builder.AddRequirements(new MinimumAgeRequirement(18)));
 
+        services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+
 
     }
 }
