@@ -6,7 +6,7 @@ GET {{host}}:{{port}}/api/dishes
 
 ###
 
-GET {{host}}:{{port}}/api/dishes/2
+GET {{host}}:{{port}}/api/dishes/3
 
 
 ###
