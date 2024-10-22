@@ -1,27 +1,17 @@
+using Nutrition.API.Extensions;
 using Nutrition.API.Middlewares;
 using Nutrition.Application.Extensions;
 using Nutrition.Infrastructure.Extensions;
 using Nutrition.Infrastructure.Seeders;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen();
-
-
-builder.Services.AddScoped<ErrorHandlingMiddleware>();
-
-
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.AddPresentation();
 builder.Services.AddApplication();
-
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
-
 
 var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<INutritionSeeder>();
@@ -29,8 +19,9 @@ var seeder = scope.ServiceProvider.GetRequiredService<INutritionSeeder>();
 await seeder.Seed();
 
 
-
 app.UseMiddleware<ErrorHandlingMiddleware>();
+
+app.UseSerilogRequestLogging();
 
 
 // Configure the HTTP request pipeline.

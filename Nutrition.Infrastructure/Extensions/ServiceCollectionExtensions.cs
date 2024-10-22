@@ -14,7 +14,10 @@ public static class ServiceCollectionExtensions
     {
         var connectionString = configuration.GetConnectionString("NutritionDB");
 
-        services.AddDbContext<NutritionDBContext>(options => options.UseSqlServer(connectionString));
+        services.AddDbContext<NutritionDBContext>(options => options
+            .UseSqlServer(connectionString)
+            .EnableSensitiveDataLogging() //TODO : Change when in PROD
+        );
 
         services.AddScoped<INutritionSeeder, NutritionSeeder>();
         services.AddScoped<IIngredientsRepository, IngredientsRepository>();
