@@ -1,7 +1,11 @@
-﻿namespace Nutrition.Domain.Entities;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class User
+namespace Nutrition.Domain.Entities;
+
+public class User : IdentityUser
 {
-    public int Id { get; set; }
-    public List<Consumption> Consumptions { get; set; }
+    public DateOnly? DateOfBirth { get; set; }
+    public float? Weight { get; set; }
+    public int? HeightCm { get; set; }
+    public List<Consumption>? Consumptions { get; set; } = [];
 }

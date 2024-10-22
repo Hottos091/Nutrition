@@ -1,6 +1,7 @@
 using Nutrition.API.Extensions;
 using Nutrition.API.Middlewares;
 using Nutrition.Application.Extensions;
+using Nutrition.Domain.Entities;
 using Nutrition.Infrastructure.Extensions;
 using Nutrition.Infrastructure.Seeders;
 using Serilog;
@@ -33,6 +34,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapGroup("api/identity")
+    .WithTags("Identity")
+    .MapIdentityApi<User>();
 
 app.UseAuthorization();
 

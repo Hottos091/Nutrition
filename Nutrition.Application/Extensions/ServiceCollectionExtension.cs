@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Nutrition.Application.Users;
 
 namespace Nutrition.Application.Extensions;
 
@@ -16,6 +17,10 @@ public static class ServiceCollectionExtension
 
         services.AddValidatorsFromAssembly(applicationAssembly)
             .AddFluentValidationAutoValidation();
+
+        services.AddScoped<IUserContext, UserContext>();
+
+        services.AddHttpContextAccessor();
 
     }
 }

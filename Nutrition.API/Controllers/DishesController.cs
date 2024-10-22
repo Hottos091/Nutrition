@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nutrition.Application.Dishes.Commands;
 using Nutrition.Application.Dishes.DishDtos;
@@ -29,6 +30,7 @@ public class DishesController(IMediator mediator) : ControllerBase
     }
 
 
+    [Authorize]
     [HttpPatch("{dishId}")]
     public async Task<IActionResult> UpdateDish([FromRoute] int dishId, UpdateDishIngredientCommand command)
     {

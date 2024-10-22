@@ -1,12 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Nutrition.Domain.Entities;
 
 
 namespace Nutrition.Infrastructure.Persistence;
 
-public class NutritionDBContext(DbContextOptions<NutritionDBContext> options) : DbContext(options)
+internal class NutritionDBContext(DbContextOptions<NutritionDBContext> options) : IdentityDbContext<User>(options)
 {
-    internal DbSet<User> Users { get; set; }
+    //internal DbSet<User> Users { get; set; }
     internal DbSet<Dish> Dishes { get; set; }
     internal DbSet<Ingredient> Ingredients { get; set; }
     internal DbSet<Consumption> Consumptions { get; set; }
